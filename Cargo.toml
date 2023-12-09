@@ -11,9 +11,9 @@ tonic-build = { version = "0.10.2", default-features = false, features = [
 ] }
 
 [dependencies]
-anyhow = "1.0.75"
-tokio = { version = "1.0", features = ["rt-multi-thread", "macros"] }
-tonic = { version = "0.10.2" }
+tonic = { version = "0.10.2", default-features = false, features = [
+    "codegen",
+    "prost",
+] }
 prost = "0.12.1"
-
 serde = { version = "1", features = ["derive"] }
