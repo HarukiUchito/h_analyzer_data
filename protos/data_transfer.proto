@@ -9,6 +9,11 @@ message Point2D {
     double y = 2;
 }
 
+message Pose2D {
+    Point2D position = 1;
+    double theta = 2;
+}
+
 message Point2DStamped {
     double timestamp = 1;
     Point2D point = 2;
@@ -21,6 +26,11 @@ message SeriesID {
 message SendPoint2DRequest {
     SeriesID id = 1;
     Point2D point = 2;
+}
+
+message SendPose2DRequest {
+    SeriesID id = 1;
+    Pose2D pose = 2;
 }
 
 message SendPoint2DStampedRequest {
@@ -42,11 +52,18 @@ message PollPoint2DSeriesResponse {
     repeated Point2D points = 2;
 }
 
+message PollPose2DSeriesResponse {
+    DataFrameCommand command = 1;
+    repeated Pose2D poses = 2;
+}
+
 service DataTransfer2D {
     rpc GetSeriesList(Empty) returns (SeriesIDList) {}
     rpc PollPoint2DQueue(SeriesID) returns (PollPoint2DSeriesResponse) {}
+    rpc PollPose2DQueue(SeriesID) returns (PollPose2DSeriesResponse) {}
     rpc ConnectToNewSeries(SeriesID) returns (Empty) {}
     rpc ClearSeries(SeriesID) returns (Empty) {}
     rpc SendPoint(SendPoint2DRequest) returns (Empty) {}
+    rpc SendPose2D(SendPose2DRequest) returns (Empty) {}
     rpc SendPointStamped(SendPoint2DStampedRequest) returns (Empty) {}
 }
