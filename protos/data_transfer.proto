@@ -19,8 +19,18 @@ message Point2DStamped {
     Point2D point = 2;
 }
 
+enum SeriesType {
+    POINT_2D = 0;
+    POSE_2D = 1;
+}
+
 message SeriesID {
     string id = 1;
+}
+
+message SeriesMetadata {
+    SeriesID id = 1;
+    SeriesType element_type = 2;
 }
 
 message SendPoint2DRequest {
@@ -38,8 +48,8 @@ message SendPoint2DStampedRequest {
     Point2DStamped point = 2;
 }
 
-message SeriesIDList {
-    repeated SeriesID list = 1;
+message SeriesMetadataList {
+    repeated SeriesMetadata list = 1;
 }
 
 enum DataFrameCommand {
@@ -58,7 +68,7 @@ message PollPose2DSeriesResponse {
 }
 
 service DataTransfer2D {
-    rpc GetSeriesList(Empty) returns (SeriesIDList) {}
+    rpc GetSeriesList(Empty) returns (SeriesMetadataList) {}
     rpc PollPoint2DQueue(SeriesID) returns (PollPoint2DSeriesResponse) {}
     rpc PollPose2DQueue(SeriesID) returns (PollPose2DSeriesResponse) {}
     rpc ConnectToNewSeries(SeriesID) returns (Empty) {}
