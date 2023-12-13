@@ -20,8 +20,9 @@ message Point2DStamped {
 }
 
 enum SeriesType {
-    POINT_2D = 0;
-    POSE_2D = 1;
+    UNKNOWN = 0;
+    POINT_2D = 1;
+    POSE_2D = 2;
 }
 
 message SeriesID {
