@@ -9,6 +9,10 @@ message Point2D {
     double y = 2;
 }
 
+message PointCloud2D {
+    repeated Point2D points = 1;
+}
+
 message Pose2D {
     Point2D position = 1;
     double theta = 2;
@@ -22,6 +26,7 @@ message Point2DStamped {
 enum SeriesType {
     POINT_2D = 0;
     POSE_2D = 1;
+    POINT_CLOUD = 2;
 }
 
 message SeriesID {
@@ -46,6 +51,11 @@ message SendPose2DRequest {
 message SendPoint2DStampedRequest {
     SeriesID id = 1;
     Point2DStamped point = 2;
+}
+
+message SendPointCloud2DRequest {
+    SeriesID id = 1;
+    PointCloud2D pointcloud = 2;
 }
 
 message SeriesMetadataList {
@@ -76,4 +86,5 @@ service DataTransfer2D {
     rpc SendPoint(SendPoint2DRequest) returns (Empty) {}
     rpc SendPose2D(SendPose2DRequest) returns (Empty) {}
     rpc SendPointStamped(SendPoint2DStampedRequest) returns (Empty) {}
+    rpc SendPointCloud2D(SendPointCloud2DRequest) returns (Empty) {}
 }
