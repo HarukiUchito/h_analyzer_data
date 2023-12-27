@@ -1,5 +1,5 @@
 [package]
-name = "h_analyzer_grpc"
+name = "h_analyzer_data"
 version = "0.1.0"
 edition = "2021"
 
