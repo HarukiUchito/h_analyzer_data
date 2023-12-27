@@ -69,9 +69,27 @@ impl Pose2D {
 }
 
 #[derive(Debug, serde::Deserialize, serde::Serialize)]
+pub struct PointCloud2D {
+    points: Vec<Point2D>,
+}
+
+impl PointCloud2D {
+    pub fn new(x_vec: Vec<f64>, y_vec: Vec<f64>) -> Self {
+        Self {
+            points: x_vec
+                .iter()
+                .zip(y_vec.iter())
+                .map(|(&x, &y)| Point2D::new(x, y))
+                .collect(),
+        }
+    }
+}
+
+#[derive(Debug, serde::Deserialize, serde::Serialize)]
 pub enum Measurement {
     WheelVelocity(WheelVelocity),
     IMU(Imu),
+    PointCloud2D(PointCloud2D),
     Pose2D(Pose2D),
 }
 
