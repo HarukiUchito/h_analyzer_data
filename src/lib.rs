@@ -1,3 +1,5 @@
+use std::collections::HashMap;
+
 pub mod grpc_fs {
     tonic::include_proto!("grpc_fs");
 }
@@ -51,4 +53,13 @@ pub struct Entity {
 pub struct WorldFrame {
     timestamp: f64, // unix time in sec
     entity_map: std::collections::HashMap<String, Entity>,
+}
+
+impl WorldFrame {
+    fn new(timestamp: f64) -> Self {
+        Self {
+            timestamp: timestamp,
+            entity_map: HashMap::new(),
+        }
+    }
 }
