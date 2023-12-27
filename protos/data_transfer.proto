@@ -77,10 +77,16 @@ message PollPose2DSeriesResponse {
     repeated Pose2D poses = 2;
 }
 
+message PollPointCloud2DSeriesResponse {
+    DataFrameCommand command = 1;
+    repeated PointCloud2D pointclouds = 2;
+}
+
 service DataTransfer2D {
     rpc GetSeriesList(Empty) returns (SeriesMetadataList) {}
     rpc PollPoint2DQueue(SeriesID) returns (PollPoint2DSeriesResponse) {}
     rpc PollPose2DQueue(SeriesID) returns (PollPose2DSeriesResponse) {}
+    rpc PollPointCloud2DQueue(SeriesID) returns (PollPointCloud2DSeriesResponse) {}
     rpc ConnectToNewSeries(SeriesMetadata) returns (Empty) {}
     rpc ClearSeries(SeriesID) returns (Empty) {}
     rpc SendPoint(SendPoint2DRequest) returns (Empty) {}
