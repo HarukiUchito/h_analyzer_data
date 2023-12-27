@@ -25,10 +25,25 @@ pub struct Point2D {
     y: f64,
 }
 
+impl Point2D {
+    pub fn new(x: f64, y: f64) -> Self {
+        Self { x: x, y: y }
+    }
+}
+
 #[derive(Debug, serde::Deserialize, serde::Serialize)]
 pub struct Pose2D {
     position: Point2D,
     theta: f64,
+}
+
+impl Pose2D {
+    pub fn new(x: f64, y: f64, theta: f64) -> Self {
+        Self {
+            position: Point2D::new(x, y),
+            theta: theta,
+        }
+    }
 }
 
 #[derive(Debug, serde::Deserialize, serde::Serialize)]
@@ -49,6 +64,23 @@ pub struct Entity {
     estimate_map: std::collections::HashMap<String, Estimate>,
 }
 
+impl Entity {
+    pub fn new() -> Self {
+        Self {
+            measurement_map: HashMap::new(),
+            estimate_map: HashMap::new(),
+        }
+    }
+
+    pub fn add_measurement(&mut self, name: String, m: Measurement) {
+        self.measurement_map.insert(name, m);
+    }
+
+    pub fn add_estimate(&mut self, name: String, estimate: Estimate) {
+        self.estimate_map.insert(name, estimate);
+    }
+}
+
 #[derive(Debug, serde::Deserialize, serde::Serialize)]
 pub struct WorldFrame {
     timestamp: f64, // unix time in sec
@@ -61,5 +93,9 @@ impl WorldFrame {
             timestamp: timestamp,
             entity_map: HashMap::new(),
         }
+    }
+
+    pub fn add_entity(&mut self, name: String, entity: Entity) {
+        self.entity_map.insert(name, entity);
     }
 }
