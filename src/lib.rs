@@ -1,5 +1,18 @@
 use std::collections::HashMap;
 
+#[derive(Debug, serde::Deserialize, serde::Serialize)]
+pub struct Vec3D {
+    x: f64,
+    y: f64,
+    z: f64,
+}
+
+impl Vec3D {
+    pub fn new(x: f64, y: f64, z: f64) -> Self {
+        Self { x: x, y: y, z: z }
+    }
+}
+
 pub mod grpc_fs {
     tonic::include_proto!("grpc_fs");
 }
@@ -15,8 +28,17 @@ pub struct WheelVelocity {
 
 #[derive(Debug, serde::Deserialize, serde::Serialize)]
 pub struct Imu {
-    angular_rates: Option<[f64; 3]>,
-    accelerations: Option<[f64; 3]>,
+    angular_rates: Option<Vec3D>,
+    accelerations: Option<Vec3D>,
+}
+
+impl Imu {
+    pub fn new(ar_opt: Option<Vec3D>, acc_opt: Option<Vec3D>) -> Self {
+        Self {
+            angular_rates: ar_opt,
+            accelerations: acc_opt,
+        }
+    }
 }
 
 #[derive(Debug, serde::Deserialize, serde::Serialize)]
