@@ -1,3 +1,4 @@
+use core::fmt;
 use std::collections::HashMap;
 
 #[derive(Debug, serde::Deserialize, serde::Serialize)]
@@ -137,5 +138,24 @@ impl WorldFrame {
 
     pub fn add_entity(&mut self, name: String, entity: Entity) {
         self.entity_map.insert(name, entity);
+    }
+}
+
+impl fmt::Display for WorldFrame {
+    fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result {
+        writeln!(f, "timestamp: {}", self.timestamp).unwrap();
+        for (ref k, ent) in self.entity_map.iter() {
+            writeln!(f, "entity: {}", k).unwrap();
+            for (ref e_k, e_ent) in ent.measurement_map.iter() {
+                write!(f, "meas.: {}", e_k);
+                match e_ent.clone() {
+                    Measurement::PointCloud2D(pcd) => {
+                        write!(f, "pc len {}", pcd.points.len()).unwrap()
+                    }
+                    _ => write!(f, "other").unwrap(),
+                };
+            }
+        }
+        writeln!(f, "")
     }
 }
