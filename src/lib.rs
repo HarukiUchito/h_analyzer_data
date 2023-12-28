@@ -159,3 +159,25 @@ impl fmt::Display for WorldFrame {
         writeln!(f, "")
     }
 }
+
+#[derive(Debug, Clone, serde::Deserialize, serde::Serialize)]
+pub struct World {
+    pub current_index: usize,
+    pub history: Vec<WorldFrame>,
+}
+
+impl World {
+    pub fn new() -> Self {
+        Self {
+            current_index: 0,
+            history: Vec::new(),
+        }
+    }
+
+    pub fn next(&mut self) {
+        self.current_index += 1;
+        if self.current_index == self.history.len() {
+            self.current_index = 0;
+        }
+    }
+}
