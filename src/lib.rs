@@ -147,8 +147,8 @@ impl fmt::Display for WorldFrame {
         for (ref k, ent) in self.entity_map.iter() {
             writeln!(f, "entity: {}", k).unwrap();
             for (ref e_k, e_ent) in ent.measurement_map.iter() {
-                write!(f, "meas.: {}", e_k);
-                match e_ent.clone() {
+                write!(f, "meas.: {}", e_k).unwrap();
+                match e_ent {
                     Measurement::PointCloud2D(pcd) => {
                         write!(f, "pc len {}", pcd.points.len()).unwrap()
                     }
