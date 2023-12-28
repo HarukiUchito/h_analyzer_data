@@ -90,6 +90,10 @@ message UnixTimeStamp {
     double value = 1;
 }
 
+message WorldID {
+    string id = 1;
+}
+
 service DataTransfer2D {
     rpc GetSeriesList(Empty) returns (SeriesMetadataList) {}
     rpc PollPoint2DQueue(SeriesID) returns (PollPoint2DSeriesResponse) {}
@@ -103,4 +107,5 @@ service DataTransfer2D {
     rpc SendPointCloud2D(SendPointCloud2DRequest) returns (Empty) {}
     rpc SendWorldFrame(stream WorldFrameBytes) returns (Empty) {}
     rpc GetWorldFrame(UnixTimeStamp) returns (stream WorldFrameBytes) {}
+    rpc RegisterNewWorld(WorldID) returns (Empty) {}
 }
