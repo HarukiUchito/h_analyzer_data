@@ -1,7 +1,7 @@
 use core::fmt;
 use std::collections::HashMap;
 
-#[derive(Debug, serde::Deserialize, serde::Serialize)]
+#[derive(Debug, Clone, serde::Deserialize, serde::Serialize)]
 pub struct Vec3D {
     x: f64,
     y: f64,
@@ -22,12 +22,12 @@ pub mod grpc_data_transfer {
     tonic::include_proto!("grpc_data_transfer");
 }
 
-#[derive(Debug, serde::Deserialize, serde::Serialize)]
+#[derive(Debug, Clone, serde::Deserialize, serde::Serialize)]
 pub struct WheelVelocity {
     value: f64,
 }
 
-#[derive(Debug, serde::Deserialize, serde::Serialize)]
+#[derive(Debug, Clone, serde::Deserialize, serde::Serialize)]
 pub struct Imu {
     angular_rates: Option<Vec3D>,
     accelerations: Option<Vec3D>,
@@ -42,7 +42,7 @@ impl Imu {
     }
 }
 
-#[derive(Debug, serde::Deserialize, serde::Serialize)]
+#[derive(Debug, Clone, serde::Deserialize, serde::Serialize)]
 pub struct Point2D {
     x: f64,
     y: f64,
@@ -54,7 +54,7 @@ impl Point2D {
     }
 }
 
-#[derive(Debug, serde::Deserialize, serde::Serialize)]
+#[derive(Debug, Clone, serde::Deserialize, serde::Serialize)]
 pub struct Pose2D {
     position: Point2D,
     theta: f64,
@@ -69,7 +69,7 @@ impl Pose2D {
     }
 }
 
-#[derive(Debug, serde::Deserialize, serde::Serialize)]
+#[derive(Debug, Clone, serde::Deserialize, serde::Serialize)]
 pub struct PointCloud2D {
     points: Vec<Point2D>,
 }
@@ -86,7 +86,7 @@ impl PointCloud2D {
     }
 }
 
-#[derive(Debug, serde::Deserialize, serde::Serialize)]
+#[derive(Debug, Clone, serde::Deserialize, serde::Serialize)]
 pub enum Measurement {
     WheelVelocity(WheelVelocity),
     IMU(Imu),
@@ -94,12 +94,12 @@ pub enum Measurement {
     Pose2D(Pose2D),
 }
 
-#[derive(Debug, serde::Deserialize, serde::Serialize)]
+#[derive(Debug, Clone, serde::Deserialize, serde::Serialize)]
 pub enum Estimate {
     Pose2D(Pose2D),
 }
 
-#[derive(Debug, serde::Deserialize, serde::Serialize)]
+#[derive(Debug, Clone, serde::Deserialize, serde::Serialize)]
 pub struct Entity {
     measurement_map: std::collections::HashMap<String, Measurement>,
     estimate_map: std::collections::HashMap<String, Estimate>,
@@ -122,7 +122,7 @@ impl Entity {
     }
 }
 
-#[derive(Debug, serde::Deserialize, serde::Serialize)]
+#[derive(Debug, Clone, serde::Deserialize, serde::Serialize)]
 pub struct WorldFrame {
     timestamp: f64, // unix time in sec
     entity_map: std::collections::HashMap<String, Entity>,
