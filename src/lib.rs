@@ -176,7 +176,7 @@ impl World {
 
     pub fn next(&mut self) {
         self.current_index += 1;
-        if self.current_index == self.history.len() {
+        if self.current_index >= self.history.len() {
             self.current_index = 0;
         }
     }
