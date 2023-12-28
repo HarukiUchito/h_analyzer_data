@@ -160,7 +160,7 @@ impl fmt::Display for WorldFrame {
     }
 }
 
-#[derive(Debug, Clone, serde::Deserialize, serde::Serialize)]
+#[derive(Debug, Clone, Default, serde::Deserialize, serde::Serialize)]
 pub struct World {
     pub current_index: usize,
     pub history: Vec<WorldFrame>,
