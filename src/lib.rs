@@ -71,7 +71,7 @@ impl Pose2D {
 
 #[derive(Debug, Clone, serde::Deserialize, serde::Serialize)]
 pub struct PointCloud2D {
-    points: Vec<Point2D>,
+    pub points: Vec<Point2D>,
 }
 
 impl PointCloud2D {
@@ -101,8 +101,8 @@ pub enum Estimate {
 
 #[derive(Debug, Clone, serde::Deserialize, serde::Serialize)]
 pub struct Entity {
-    measurement_map: std::collections::HashMap<String, Measurement>,
-    estimate_map: std::collections::HashMap<String, Estimate>,
+    pub measurement_map: std::collections::HashMap<String, Measurement>,
+    pub estimate_map: std::collections::HashMap<String, Estimate>,
 }
 
 impl Entity {
@@ -124,8 +124,8 @@ impl Entity {
 
 #[derive(Debug, Clone, serde::Deserialize, serde::Serialize)]
 pub struct WorldFrame {
-    timestamp: f64, // unix time in sec
-    entity_map: std::collections::HashMap<String, Entity>,
+    pub timestamp: f64, // unix time in sec
+    pub entity_map: std::collections::HashMap<String, Entity>,
 }
 
 impl WorldFrame {
