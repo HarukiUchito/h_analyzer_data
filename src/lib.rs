@@ -44,8 +44,8 @@ impl Imu {
 
 #[derive(Debug, Clone, serde::Deserialize, serde::Serialize)]
 pub struct Point2D {
-    x: f64,
-    y: f64,
+    pub x: f64,
+    pub y: f64,
 }
 
 impl Point2D {
