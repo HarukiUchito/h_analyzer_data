@@ -94,6 +94,21 @@ message WorldID {
     string id = 1;
 }
 
+message WorldMetadata {
+    WorldID id = 1;
+    UnixTimeStamp start = 2;
+    UnixTimeStamp end = 3;
+}
+
+message WorldMetadataList {
+    repeated WorldMetadata list = 1;
+}
+
+message GetWorldFrameRequest {
+    WorldID id = 1;
+    UnixTimeStamp timestamp = 2;
+}
+
 service DataTransfer2D {
     rpc GetSeriesList(Empty) returns (SeriesMetadataList) {}
     rpc PollPoint2DQueue(SeriesID) returns (PollPoint2DSeriesResponse) {}
@@ -105,7 +120,10 @@ service DataTransfer2D {
     rpc SendPose2D(SendPose2DRequest) returns (Empty) {}
     rpc SendPointStamped(SendPoint2DStampedRequest) returns (Empty) {}
     rpc SendPointCloud2D(SendPointCloud2DRequest) returns (Empty) {}
+
+    rpc GetWorldList(Empty) returns (WorldMetadataList) {}
     rpc SendWorldFrame(stream WorldFrameBytes) returns (Empty) {}
-    rpc GetWorldFrame(UnixTimeStamp) returns (stream WorldFrameBytes) {}
+    rpc GetWorldFrame(GetWorldFrameRequest) returns (stream WorldFrameBytes) {}
     rpc RegisterNewWorld(WorldID) returns (Empty) {}
+
 }
