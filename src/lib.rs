@@ -55,8 +55,8 @@ impl Point2D {
 
 #[derive(Debug, Clone, serde::Deserialize, serde::Serialize)]
 pub struct Pose2D {
-    position: Point2D,
-    theta: f64,
+    pub position: Point2D,
+    pub theta: f64,
 }
 
 impl Pose2D {
