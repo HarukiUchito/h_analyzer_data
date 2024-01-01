@@ -124,13 +124,15 @@ impl Entity {
 #[derive(Debug, Clone, serde::Deserialize, serde::Serialize)]
 pub struct WorldFrame {
     pub timestamp: f64, // unix time in sec
+    pub frame_index: usize,
     pub entity_map: std::collections::BTreeMap<String, Entity>,
 }
 
 impl WorldFrame {
-    pub fn new(timestamp: f64) -> Self {
+    pub fn new(index: usize, timestamp: f64) -> Self {
         Self {
             timestamp: timestamp,
+            frame_index: index,
             entity_map: std::collections::BTreeMap::new(),
         }
     }

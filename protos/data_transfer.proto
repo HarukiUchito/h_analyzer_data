@@ -98,6 +98,7 @@ message WorldMetadata {
     WorldID id = 1;
     UnixTimeStamp start = 2;
     UnixTimeStamp end = 3;
+    int32 total_frame_num = 4;
 }
 
 message WorldMetadataList {
