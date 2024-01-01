@@ -1,5 +1,4 @@
 use core::fmt;
-use std::collections::HashMap;
 
 #[derive(Debug, Clone, serde::Deserialize, serde::Serialize)]
 pub struct Vec3D {
@@ -101,15 +100,15 @@ pub enum Estimate {
 
 #[derive(Debug, Clone, serde::Deserialize, serde::Serialize)]
 pub struct Entity {
-    pub measurement_map: std::collections::HashMap<String, Measurement>,
-    pub estimate_map: std::collections::HashMap<String, Estimate>,
+    pub measurement_map: std::collections::BTreeMap<String, Measurement>,
+    pub estimate_map: std::collections::BTreeMap<String, Estimate>,
 }
 
 impl Entity {
     pub fn new() -> Self {
         Self {
-            measurement_map: HashMap::new(),
-            estimate_map: HashMap::new(),
+            measurement_map: std::collections::BTreeMap::new(),
+            estimate_map: std::collections::BTreeMap::new(),
         }
     }
 
@@ -125,14 +124,14 @@ impl Entity {
 #[derive(Debug, Clone, serde::Deserialize, serde::Serialize)]
 pub struct WorldFrame {
     pub timestamp: f64, // unix time in sec
-    pub entity_map: std::collections::HashMap<String, Entity>,
+    pub entity_map: std::collections::BTreeMap<String, Entity>,
 }
 
 impl WorldFrame {
     pub fn new(timestamp: f64) -> Self {
         Self {
             timestamp: timestamp,
-            entity_map: HashMap::new(),
+            entity_map: std::collections::BTreeMap::new(),
         }
     }
 
