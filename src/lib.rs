@@ -181,4 +181,9 @@ impl World {
             self.current_index = 0;
         }
     }
+
+    pub fn reset(&mut self) {
+        self.current_index = 0;
+        self.history.clear();
+    }
 }
