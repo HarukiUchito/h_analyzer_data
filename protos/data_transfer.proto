@@ -27,9 +27,16 @@ message WorldMetadataList {
     repeated WorldMetadata list = 1;
 }
 
+enum WorldFrameRequestType {
+    FRAME_INDEX = 0;
+    TIMESTAMP = 1;
+}
+
 message GetWorldFrameRequest {
     WorldID id = 1;
-    UnixTimeStamp timestamp = 2;
+    WorldFrameRequestType type = 2;
+    uint32 frame_index = 3;
+    UnixTimeStamp timestamp = 4;
 }
 
 service DataTransfer2D {
