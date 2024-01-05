@@ -182,6 +182,14 @@ impl World {
         }
     }
 
+    pub fn previous(&mut self) {
+        if self.current_index == 0 {
+            self.current_index = self.history.len() - 1;
+        } else {
+            self.current_index -= 1;
+        }
+    }
+
     pub fn reset(&mut self) {
         self.current_index = 0;
         self.history.clear();
