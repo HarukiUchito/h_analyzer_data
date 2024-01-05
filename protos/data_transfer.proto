@@ -34,7 +34,7 @@ enum WorldFrameRequestType {
 
 message GetWorldFrameRequest {
     WorldID id = 1;
-    WorldFrameRequestType type = 2;
+    WorldFrameRequestType request_type = 2;
     uint32 frame_index = 3;
     UnixTimeStamp timestamp = 4;
 }
