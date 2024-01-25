@@ -1,7 +1,7 @@
 fn main() -> Result<(), Box<dyn std::error::Error>> {
     tonic_build::configure()
         .type_attribute(
-            "grpc_fs.DataFrameType",
+            "grpc_fs.DataFrameLoadOption",
             "#[derive(serde::Deserialize, serde::Serialize)]",
         )
         .type_attribute(

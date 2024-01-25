@@ -18,14 +18,15 @@ message ListResponse {
     repeated string directories = 2;
 }
 
-enum DataFrameType {
-    COMMA_SEP = 0;
-    NDEV = 1;
-    KITTI = 2;
+message DataFrameLoadOption {
+    bool has_header = 1;
+    uint32 skip_row_num_before_header = 2;
+    uint32 skip_row_num_after_header = 3;
+    string delimiter = 4;
 }
 
 message DataFrameInfo {
-    DataFrameType df_type = 1;
+    DataFrameLoadOption load_option = 1;
     string df_path = 2;
 }
 
@@ -45,5 +46,5 @@ message DataFrameBytes {
 
 message FileLoadRequest {
     string filename = 1;
-    DataFrameType filetype = 2;
+    DataFrameLoadOption load_option = 2;
 }
