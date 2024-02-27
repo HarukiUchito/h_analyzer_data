@@ -69,6 +69,21 @@ impl Pose2D {
 }
 
 #[derive(Debug, Clone, serde::Deserialize, serde::Serialize)]
+pub struct Pose2DWithCovariance {
+    pub pose: Pose2D,
+    pub covariance: nalgebra::Matrix3<f64>,
+}
+
+impl Pose2DWithCovariance {
+    pub fn new(x: f64, y: f64, theta: f64, cov: nalgebra::Matrix3<f64>) -> Self {
+        Self {
+            pose: Pose2D::new(x, y, theta),
+            covariance: cov,
+        }
+    }
+}
+
+#[derive(Debug, Clone, serde::Deserialize, serde::Serialize)]
 pub struct PointCloud2D {
     pub points: Vec<Point2D>,
 }
@@ -96,6 +111,7 @@ pub enum Measurement {
 #[derive(Debug, Clone, serde::Deserialize, serde::Serialize)]
 pub enum Estimate {
     Pose2D(Pose2D),
+    Pose2DWithCovariance(Pose2DWithCovariance),
 }
 
 #[derive(Debug, Clone, serde::Deserialize, serde::Serialize)]
