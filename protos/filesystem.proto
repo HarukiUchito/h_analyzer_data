@@ -18,11 +18,17 @@ message ListResponse {
     repeated string directories = 2;
 }
 
+enum DataFrameSourceType {
+    CSV = 0;
+    ROSBAG2 = 1;
+}
+
 message DataFrameLoadOption {
-    bool has_header = 1;
-    uint32 skip_row_num_before_header = 2;
-    uint32 skip_row_num_after_header = 3;
-    string delimiter = 4;
+    DataFrameSourceType source_type = 1;
+    bool has_header = 2;
+    uint32 skip_row_num_before_header = 3;
+    uint32 skip_row_num_after_header = 4;
+    string delimiter = 5;
 }
 
 message DataFrameInfo {
