@@ -32,8 +32,9 @@ message DataFrameLoadOption {
 }
 
 message DataFrameInfo {
-    DataFrameLoadOption load_option = 1;
-    string df_path = 2;
+    uint32 id = 1;
+    DataFrameLoadOption load_option = 2;
+    string df_path = 3;
 }
 
 message DataFrameInfoList {
