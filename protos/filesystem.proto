@@ -18,6 +18,10 @@ message ListResponse {
     repeated string directories = 2;
 }
 
+enum DataFrameId {
+    uint32 id = 1;
+}
+
 enum DataFrameSourceType {
     CSV = 0;
     ROSBAG2 = 1;
@@ -32,7 +36,7 @@ message DataFrameLoadOption {
 }
 
 message DataFrameInfo {
-    uint32 id = 1;
+    DataFrameId id = 1;
     DataFrameLoadOption load_option = 2;
     string df_path = 3;
 }
@@ -45,7 +49,7 @@ service PolarsService {
     rpc SaveDataFrameList(DataFrameInfoList) returns (Empty) {}
     rpc InitialDataFrameList(Empty) returns (DataFrameInfoList) {}
     rpc GetDataFrameList(Empty) returns (DataFrameInfoList) {}
-    rpc GetDataFrame(uint32) returns (stream DataFrameBytes) {}
+    rpc GetDataFrame(DataFrameId) returns (stream DataFrameBytes) {}
     rpc LoadDataFrame(FileLoadRequest) returns (stream DataFrameBytes) {}
 }
 
