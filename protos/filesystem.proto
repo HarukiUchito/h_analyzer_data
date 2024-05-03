@@ -18,7 +18,7 @@ message ListResponse {
     repeated string directories = 2;
 }
 
-enum DataFrameId {
+message DataFrameId {
     uint32 id = 1;
 }
 
