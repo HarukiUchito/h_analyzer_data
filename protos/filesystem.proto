@@ -19,7 +19,7 @@ message ListResponse {
 }
 
 message DataFrameId {
-    uint32 id = 1;
+    int32 id = 1;
 }
 
 enum DataFrameSourceType {
