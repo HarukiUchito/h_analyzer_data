@@ -47,11 +47,9 @@ message DataFrameInfoList {
 
 service PolarsService {
     rpc SaveDataFrameList(DataFrameInfoList) returns (Empty) {}
-    rpc InitialDataFrameList(Empty) returns (DataFrameInfoList) {}
     rpc GetDataFrameList(Empty) returns (DataFrameInfoList) {}
     rpc GetDataFrame(DataFrameId) returns (stream DataFrameBytes) {}
     rpc RemoveDataFrame(DataFrameId) returns (Empty) {}
-    rpc LoadDataFrame(FileLoadRequest) returns (stream DataFrameBytes) {}
     rpc LoadDataFrameFromFile(FileLoadRequest) returns (DataFrameId) {}
 }
 
