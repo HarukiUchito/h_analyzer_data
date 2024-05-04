@@ -51,7 +51,7 @@ service PolarsService {
     rpc GetDataFrameList(Empty) returns (DataFrameInfoList) {}
     rpc GetDataFrame(DataFrameId) returns (stream DataFrameBytes) {}
     rpc LoadDataFrame(FileLoadRequest) returns (stream DataFrameBytes) {}
-    rpc LoadDataFrameFromFile(FileLoadRequest) returns (Empty) {}
+    rpc LoadDataFrameFromFile(FileLoadRequest) returns (DataFrameId) {}
 }
 
 message DataFrameBytes {
