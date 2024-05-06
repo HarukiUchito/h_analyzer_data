@@ -7,6 +7,7 @@ message Empty {
 service FileSystem {
     rpc DefaultPath (Empty) returns (PathMessage) {}
     rpc List (PathMessage) returns (ListResponse) {}
+    rpc LoadRosbag2 (PathMessage) returns (Empty) {}
 }
 
 message PathMessage {
