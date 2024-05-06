@@ -7,7 +7,6 @@ message Empty {
 service FileSystem {
     rpc DefaultPath (Empty) returns (PathMessage) {}
     rpc List (PathMessage) returns (ListResponse) {}
-    rpc LoadRosbag2 (PathMessage) returns (Empty) {}
 }
 
 message PathMessage {
@@ -47,6 +46,7 @@ message DataFrameInfoList {
 }
 
 service PolarsService {
+    rpc LoadRosbag2 (PathMessage) returns (Empty) {}
     rpc SaveDataFrameList(DataFrameInfoList) returns (Empty) {}
     rpc GetDataFrameList(Empty) returns (DataFrameInfoList) {}
     rpc GetDataFrame(DataFrameId) returns (stream DataFrameBytes) {}
