@@ -22,6 +22,11 @@ message DataFrameId {
     uint32 id = 1;
 }
 
+// this is used for setting unique id of dataframe that is transferred from other program using h_analyzer_client_lib
+message DataFrameExternalId {
+    uint32 id = 1;
+}
+
 enum DataFrameSourceType {
     CSV = 0;
     ROSBAG2 = 1;
@@ -52,6 +57,9 @@ service PolarsService {
     rpc GetDataFrame(DataFrameId) returns (stream DataFrameBytes) {}
     rpc RemoveDataFrame(DataFrameId) returns (Empty) {}
     rpc LoadDataFrameFromFile(FileLoadRequest) returns (DataFrameId) {}
+
+    rpc RegisterDataFrame(DataFrameExternalId) returns (Empty) {}
+    rpc SendDataFrame(stream DataFrameBytes) returns (Empty) {}
 }
 
 message DataFrameBytes {
