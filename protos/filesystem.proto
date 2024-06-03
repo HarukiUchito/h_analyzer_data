@@ -24,7 +24,7 @@ message DataFrameId {
 
 // this is used for setting unique id of dataframe that is transferred from other program using h_analyzer_client_lib
 message DataFrameExternalId {
-    uint32 id = 1;
+    string id_name = 1;
 }
 
 enum DataFrameSourceType {
