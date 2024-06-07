@@ -38,6 +38,7 @@ message DataFrameLoadOption {
     uint32 skip_row_num_before_header = 3;
     uint32 skip_row_num_after_header = 4;
     string delimiter = 5;
+    bool updated = 6;
 }
 
 message DataFrameInfo {
